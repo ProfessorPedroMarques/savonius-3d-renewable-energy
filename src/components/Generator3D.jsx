@@ -43,7 +43,7 @@ export function SmallGear() {
   });
   return (
     <group ref={ref} position={[GEN.x, GEN.gearY, 0]}>
-      <Gear radius={0.13} teeth={10} id="transmissao" color="#fbbf24" />
+      <Gear radius={0.13} teeth={10} id="transmissao" color="#d9a03a" />
     </group>
   );
 }
@@ -65,19 +65,19 @@ export function Generator3D() {
       {/* Carcaça externa */}
       <mesh position={[0, cy, 0]} castShadow>
         <cylinderGeometry args={[GEN.r, GEN.r, GEN.h, 48, 1, true]} />
-        <PartMaterial id="gerador" color="#1e3a5f" metalness={0.7} roughness={0.35} shell side={2} />
+        <PartMaterial id="gerador" color="#3c2451" metalness={0.7} roughness={0.35} shell side={2} />
       </mesh>
       {/* Aletas de resfriamento */}
       {Array.from({ length: 5 }).map((_, i) => (
         <mesh key={i} position={[0, GEN.y + 0.1 + i * 0.12, 0]}>
           <torusGeometry args={[GEN.r + 0.01, 0.014, 8, 48]} />
-          <PartMaterial id="gerador" color="#38bdf8" metalness={0.8} roughness={0.3} shell />
+          <PartMaterial id="gerador" color="#efb039" metalness={0.8} roughness={0.3} shell />
         </mesh>
       ))}
       {/* Tampa superior */}
       <mesh position={[0, GEN.y + GEN.h, 0]}>
         <cylinderGeometry args={[GEN.r + 0.02, GEN.r + 0.02, 0.05, 48]} />
-        <PartMaterial id="gerador" color="#0f2742" metalness={0.7} roughness={0.4} shell />
+        <PartMaterial id="gerador" color="#2a1840" metalness={0.7} roughness={0.4} shell />
       </mesh>
       {/* Eixo do gerador até a engrenagem pequena */}
       <mesh position={[0, GEN.y + GEN.h + 0.12, 0]}>

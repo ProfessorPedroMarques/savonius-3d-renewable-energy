@@ -40,11 +40,11 @@ export function LightBulb() {
       {/* Pedestal */}
       <mesh position={[0, 0.05, 0]} receiveShadow castShadow>
         <cylinderGeometry args={[0.35, 0.4, 0.1, 40]} />
-        <PartMaterial id="lampada" color="#1f2a3a" metalness={0.5} roughness={0.5} />
+        <PartMaterial id="lampada" color="#2a1f3d" metalness={0.5} roughness={0.5} />
       </mesh>
       <mesh position={[0, y / 2, 0]} castShadow>
         <cylinderGeometry args={[0.035, 0.035, y, 16]} />
-        <PartMaterial id="lampada" color="#64748b" metalness={0.8} roughness={0.3} />
+        <PartMaterial id="lampada" color="#5a5070" metalness={0.8} roughness={0.3} />
       </mesh>
       {/* Bocal com rosca */}
       {[0, 1, 2, 3].map((i) => (

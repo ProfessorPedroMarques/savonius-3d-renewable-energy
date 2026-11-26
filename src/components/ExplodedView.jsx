@@ -43,7 +43,7 @@ export function ExplodePart({ id, offset = [0, 0, 0], labelPos, number, children
         <Html position={labelPos} center zIndexRange={[20, 0]}>
           <button
             type="button"
-            className={`marker ${active ? 'is-active' : ''}`}
+            className={`marker ${active ? 'is-active' : ''} ${ctx.dim && !active ? 'is-dim' : ''}`}
             onClick={() => ctx.select(id)}
             aria-label={`Explicação: ${PARTS[id].titulo}`}
           >

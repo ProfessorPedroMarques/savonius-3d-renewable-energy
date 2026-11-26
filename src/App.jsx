@@ -20,6 +20,7 @@ import { TOUR } from './data/content';
 
 const TOUR_STEP_MS = 8000;
 const CAMERA_HOME = { pos: [5.6, 3.9, 7.4], target: [0.4, 1.9, 0] };
+const CAMERA_EXPLODED = { pos: [7.4, 5.4, 9.8], target: [0.9, 2.6, 0.4] };
 
 // Peças destacadas em cada etapa do roteiro
 const TOUR_HIGHLIGHT = [['vento'], ['pas'], ['eixo', 'transmissao'], ['gerador'], ['cabos', 'lampada']];
@@ -88,13 +89,37 @@ export default function App() {
 
   const select = useCallback((id) => setSelected(id), []);
 
-  const recenter = useCallback(() => {
+  /** Move a câmera suavemente até um enquadramento (respeita movimento reduzido). */
+  const flyTo = useCallback((view) => {
     const c = orbitRef.current;
     if (!c) return;
-    c.object.position.set(...CAMERA_HOME.pos);
-    c.target.set(...CAMERA_HOME.target);
-    c.update();
+    const p0 = c.object.position.clone();
+    const t0 = c.target.clone();
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const dur = reduced ? 1 : 900;
+    const start = performance.now();
+    const tick = (now) => {
+      const k = Math.min(1, (now - start) / dur);
+      const e = 1 - Math.pow(1 - k, 3); // desaceleração suave
+      c.object.position.set(...view.pos.map((v, i) => p0.getComponent(i) + (v - p0.getComponent(i)) * e));
+      c.target.set(...view.target.map((v, i) => t0.getComponent(i) + (v - t0.getComponent(i)) * e));
+      c.update();
+      if (k < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }, []);
+
+  const recenter = useCallback(() => flyTo(exploded ? CAMERA_EXPLODED : CAMERA_HOME), [flyTo, exploded]);
+
+  // Ao desmontar/montar, a câmera se afasta/aproxima para manter tudo no quadro
+  const firstExplode = useRef(true);
+  useEffect(() => {
+    if (firstExplode.current) {
+      firstExplode.current = false;
+      return;
+    }
+    flyTo(exploded ? CAMERA_EXPLODED : CAMERA_HOME);
+  }, [exploded, flyTo]);
 
   // Esc fecha explicação/ajuda
   useEffect(() => {

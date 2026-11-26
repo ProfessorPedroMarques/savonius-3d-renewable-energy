@@ -13,7 +13,7 @@ import { P_MAX, PHYS } from '../hooks/useTurbineSimulation';
 export const RPM_MAX = (((PHYS.LAMBDA * PHYS.VMAX) / PHYS.R) * 60) / (2 * Math.PI);
 const SEGMENTS = 12;
 
-function lampState(b) {
+export function lampState(b) {
   if (b <= 0.01) return 'Apagada';
   if (b < 0.3) return 'Fraca';
   if (b < 0.85) return 'Acesa';

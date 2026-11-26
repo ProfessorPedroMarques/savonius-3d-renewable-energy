@@ -51,12 +51,12 @@ export function TurbineBlades() {
       {[0, Math.PI].map((rot, i) => (
         <group key={rot} rotation={[0, rot, 0]}>
           <mesh geometry={geo} position={[offset, bottom, 0]} castShadow>
-            <PartMaterial id="pas" color={i ? "#9fd8ff" : "#eef7ff"} metalness={0.2} roughness={0.35} side={THREE.DoubleSide} />
+            <PartMaterial id="pas" color={i ? "#c9d8e8" : "#f4f1ea"} metalness={0.2} roughness={0.35} side={THREE.DoubleSide} />
           </mesh>
           {/* Faixa de reforço no meio da pá */}
           <mesh position={[offset, bottom + height / 2, 0]} rotation={[-Math.PI / 2, 0, 0]}>
             <torusGeometry args={[ROTOR.r + 0.02, 0.012, 8, 40, Math.PI]} />
-            <PartMaterial id="pas" color="#38bdf8" metalness={0.6} roughness={0.3} />
+            <PartMaterial id="pas" color="#efb039" metalness={0.6} roughness={0.3} />
           </mesh>
         </group>
       ))}
@@ -64,14 +64,14 @@ export function TurbineBlades() {
       {[bottom - 0.03, bottom + height + 0.03].map((y) => (
         <mesh key={y} position={[0, y, 0]} castShadow>
           <cylinderGeometry args={[0.86, 0.86, 0.04, 64]} />
-          <PartMaterial id="pas" color="#7dd3fc" metalness={0.1} roughness={0.15} opacity={0.55} />
+          <PartMaterial id="pas" color="#a9c3dd" metalness={0.1} roughness={0.15} opacity={0.55} />
         </mesh>
       ))}
       {/* Cubos de fixação no eixo */}
       {[bottom - 0.08, bottom + height + 0.08].map((y) => (
         <mesh key={'hub' + y} position={[0, y, 0]}>
           <cylinderGeometry args={[0.11, 0.11, 0.1, 24]} />
-          <PartMaterial id="eixo" color="#94a3b8" metalness={0.8} roughness={0.25} />
+          <PartMaterial id="eixo" color="#8e86a0" metalness={0.8} roughness={0.25} />
         </mesh>
       ))}
     </group>

@@ -49,7 +49,7 @@ function Cable({ curve, color, reverse }) {
       if (reverse) u = 1 - u; // fio de volta: fluxo no sentido contrário
       curve.getPointAt(u, pt);
       dummy.position.copy(pt);
-      dummy.scale.setScalar((0.6 + b * 0.8) * (hl ? 1.3 : 1));
+      dummy.scale.setScalar((0.45 + b * 0.4) * (hl ? 1.25 : 1));
       dummy.updateMatrix();
       inst.current.setMatrixAt(i, dummy.matrix);
     }
@@ -64,7 +64,7 @@ function Cable({ curve, color, reverse }) {
       </mesh>
       <instancedMesh ref={inst} args={[null, null, PER_CABLE]} frustumCulled={false}>
         <sphereGeometry args={[0.035, 10, 8]} />
-        <meshBasicMaterial ref={mat} color="#fff3b0" transparent opacity={0} depthWrite={false} blending={THREE.AdditiveBlending} />
+        <meshBasicMaterial ref={mat} color="#ffd27a" transparent opacity={0} depthWrite={false} blending={THREE.AdditiveBlending} />
       </instancedMesh>
     </group>
   );
@@ -74,8 +74,8 @@ export function EnergyFlow() {
   const curves = useMemo(() => [makeCurve(0.06), makeCurve(-0.06)], []);
   return (
     <group>
-      <Cable curve={curves[0]} color="#dc2626" />
-      <Cable curve={curves[1]} color="#1e293b" reverse />
+      <Cable curve={curves[0]} color="#c2453a" />
+      <Cable curve={curves[1]} color="#231a30" reverse />
     </group>
   );
 }

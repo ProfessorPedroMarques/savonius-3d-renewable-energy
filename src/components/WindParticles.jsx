@@ -42,7 +42,7 @@ export function WindParticles() {
 
     const hl = ctx.highlight.includes('vento');
     mat.current.opacity = Math.min(0.85, w / 5) * (hl ? 1 : 0.75);
-    mat.current.color.set(hl ? '#e0fbff' : '#67e8f9');
+    mat.current.color.set(hl ? '#f4f1ea' : '#a9c3dd');
 
     for (let i = 0; i < COUNT; i++) {
       const p = data[i];
@@ -70,7 +70,7 @@ export function WindParticles() {
   return (
     <instancedMesh ref={mesh} args={[null, null, COUNT]} frustumCulled={false}>
       <boxGeometry args={[1, 0.018, 0.018]} />
-      <meshBasicMaterial ref={mat} color="#67e8f9" transparent opacity={0} depthWrite={false} blending={THREE.AdditiveBlending} />
+      <meshBasicMaterial ref={mat} color="#a9c3dd" transparent opacity={0} depthWrite={false} blending={THREE.AdditiveBlending} />
     </instancedMesh>
   );
 }

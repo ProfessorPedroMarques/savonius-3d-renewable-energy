@@ -6,6 +6,7 @@
 import { memo } from 'react';
 import { Wind, Square, Minus, Plus, Play, Pause, RotateCcw, Lock, Unlock, ScanEye, Tags, Crosshair } from 'lucide-react';
 import { PHYS } from '../hooks/useTurbineSimulation';
+import { lampState } from './Indicators';
 
 const SPEEDS = [0.5, 1, 2];
 
@@ -120,7 +121,7 @@ export const ControlPanel = memo(function ControlPanel({ controls, set, reset, o
           <span>Lâmpada</span>
           <b className={lit ? 'on' : ''}>
             <span className="bulb-dot" style={{ '--b': readout.brightness, width: 12, height: 12 }} />
-            {lit ? (readout.brightness > 0.85 ? 'Brilho máximo' : 'Acesa') : 'Apagada'}
+            {lampState(readout.brightness)}
           </b>
         </div>
       </section>

@@ -149,6 +149,7 @@ button { font: inherit; color: inherit; }
   color: var(--text-secondary); font-weight: 500; font-size: 14px;
   transition: color 0.2s;
 }
+.mode-switch button { white-space: nowrap; }
 .mode-switch button:hover { color: var(--text-primary); }
 .mode-switch button[aria-pressed='true'] { color: #1b1206; }
 .mode-indicator {
@@ -540,18 +541,22 @@ button { font: inherit; color: inherit; }
   body { overflow: auto; }
   .app {
     height: auto; min-height: 100%;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: var(--header-h) 64vh auto;
     grid-template-areas:
       'head head'
       'stage stage'
       'ctrl info';
   }
+  :root { --header-h: auto; }
+  .app-header { flex-wrap: wrap; padding: 10px 14px; row-gap: 10px; }
+  .mode-switch { order: 5; width: 100%; margin-left: 0; }
+  .mode-switch button { flex: 1; justify-content: center; }
+  .sim-status { margin-left: auto; }
   .col-controls, .col-info { overflow: visible; border-top: 1px solid var(--line); }
   .col-info { border-left: 1px solid var(--line); }
   .school-sub, .divider-v { display: none; }
   .mode-switch button span { display: inline; font-size: 13px; }
-  .sim-status span.label { display: none; }
   .dock-inner { max-height: 46vh; overflow: auto; }
 }
 
@@ -559,16 +564,21 @@ button { font: inherit; color: inherit; }
 @media (max-width: 680px) {
   :root { --header-h: auto; }
   .app {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto 58vh auto auto;
     grid-template-areas: 'head' 'stage' 'info' 'ctrl';
   }
   .app-header { flex-wrap: wrap; padding: 10px 12px; gap: 10px; }
+  .identity { flex: 1; min-width: 0; gap: 10px; }
+  .school-name { font-size: 15px; }
+  .brand-logo { --w: 60px; --h: 46px; }
   .project-title { display: none; }
   .mode-switch { order: 5; width: 100%; margin-left: 0; }
-  .mode-switch button { flex: 1; justify-content: center; padding: 8px 6px; }
-  .mode-switch button span { font-size: 12px; }
-  .sim-status { margin-left: auto; }
+  .mode-switch button { flex: 1; min-width: 0; justify-content: center; padding: 9px 4px; }
+  .mode-switch button svg { display: none; }
+  .mode-switch button span { font-size: 13px; overflow: hidden; text-overflow: ellipsis; }
+  .sim-status { margin-left: auto; min-width: 0; padding: 6px 10px; font-size: 12px; }
+  .stage-corner { display: none; }
   .col-info { border-left: 0; }
   .explain { grid-template-columns: 1fr auto; }
   .explain-num { display: none; }
