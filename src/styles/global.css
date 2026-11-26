@@ -542,7 +542,7 @@ button { font: inherit; color: inherit; }
   .app {
     height: auto; min-height: 100%;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: var(--header-h) 64vh auto;
+    grid-template-rows: auto auto auto;
     grid-template-areas:
       'head head'
       'stage stage'
@@ -557,7 +557,7 @@ button { font: inherit; color: inherit; }
   .col-info { border-left: 1px solid var(--line); }
   .school-sub, .divider-v { display: none; }
   .mode-switch button span { display: inline; font-size: 13px; }
-  .dock-inner { max-height: 46vh; overflow: auto; }
+  .canvas-wrap { flex: none; height: 62vh; min-height: 380px; }
 }
 
 /* Celulares: cabeçalho em duas linhas, palco, telemetria, controles */
@@ -565,7 +565,7 @@ button { font: inherit; color: inherit; }
   :root { --header-h: auto; }
   .app {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto 58vh auto auto;
+    grid-template-rows: auto auto auto auto;
     grid-template-areas: 'head' 'stage' 'info' 'ctrl';
   }
   .app-header { flex-wrap: wrap; padding: 10px 12px; gap: 10px; }
@@ -579,6 +579,7 @@ button { font: inherit; color: inherit; }
   .mode-switch button span { font-size: 13px; overflow: hidden; text-overflow: ellipsis; }
   .sim-status { margin-left: auto; min-width: 0; padding: 6px 10px; font-size: 12px; }
   .stage-corner { display: none; }
+  .canvas-wrap { height: 54vh; min-height: 320px; }
   .col-info { border-left: 0; }
   .explain { grid-template-columns: 1fr auto; }
   .explain-num { display: none; }
